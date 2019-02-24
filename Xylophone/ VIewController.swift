@@ -7,44 +7,35 @@
 //
 
 import UIKit
+import AudioToolbox
+import AVFoundation
 
 class ViewController: UIViewController{
     
-
+    var player : AVAudioPlayer?
+    var noteTag : String = "1"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-
-
     @IBAction func notePressed(_ sender: UIButton) {
         
-//        print(sender.tag)
-        if sender.tag == 1 {
-            AudioServicesPlaySystemSound(
-        }
-        else if sender.tag == 2 {
-            
-        }
-        else if sender.tag == 3 {
-            
-        }
-        else if sender.tag == 4 {
-            
-        }
-        else if sender.tag == 5 {
-            
-        }
-        else if sender.tag == 6 {
-            
-        }
-        else if sender.tag == 7 {
-            
-        }
+        noteTag = String(sender.tag)
+        
+        let noteUrl = Bundle.main.url(forResource: "note"+noteTag, withExtension: "wav")!
+        
+                   do {
+                        player = try AVAudioPlayer(contentsOf: noteUrl)
+                        guard let player = player else { return }
+        
+                        player.prepareToPlay()
+                        player.play()
+                    } catch let error as NSError {
+                        print(error.description)
+                    }
         
     }
-    
-  
-
+ 
 }
 
