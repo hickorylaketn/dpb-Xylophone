@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AudioToolbox
 import AVFoundation
 
 class ViewController: UIViewController{
@@ -18,24 +17,32 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     @IBAction func notePressed(_ sender: UIButton) {
+        // There are 7 note?.wav files, each with a note to play when the corresponding key is played
+        // They are named note1, note2 ... etc. All are linked to the same IBAction notePressed
+        // The tag tells us which note to "play", so we append the tag number to "note" to select the proper wav
+        // file
         
         noteTag = String(sender.tag)
         
+        // Next, create a url pointing to the desired wav file
+        
         let noteUrl = Bundle.main.url(forResource: "note"+noteTag, withExtension: "wav")!
         
-                   do {
-                        player = try AVAudioPlayer(contentsOf: noteUrl)
-                        guard let player = player else { return }
+        // Now, play the note on the iPhone
         
-                        player.prepareToPlay()
-                        player.play()
-                    } catch let error as NSError {
-                        print(error.description)
-                    }
+        do {
+            player = try AVAudioPlayer(contentsOf: noteUrl)
+            guard let player = player else { return }
+            
+            player.prepareToPlay()
+            player.play()
+        } catch let error as NSError {
+            print(error.description)
+        }
         
     }
- 
+    
 }
 
