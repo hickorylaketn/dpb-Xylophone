@@ -19,7 +19,28 @@ class ViewController: UIViewController{
 
     @IBAction func notePressed(_ sender: UIButton) {
         
-        
+//        print(sender.tag)
+        if sender.tag == 1 {
+            AudioServicesPlaySystemSound(
+        }
+        else if sender.tag == 2 {
+            
+        }
+        else if sender.tag == 3 {
+            
+        }
+        else if sender.tag == 4 {
+            
+        }
+        else if sender.tag == 5 {
+            
+        }
+        else if sender.tag == 6 {
+            
+        }
+        else if sender.tag == 7 {
+            
+        }
         
     }
     
