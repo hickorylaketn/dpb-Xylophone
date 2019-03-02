@@ -12,16 +12,15 @@ import AVFoundation
 class ViewController: UIViewController{
     
     var player : AVAudioPlayer?
-    var noteTag : String = "1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    fileprivate func playThatNote() {
+    fileprivate func playThatNote(noteFileName : String) {
         // Next, create a url pointing to the desired wav file
         
-        let noteUrl = Bundle.main.url(forResource: "note"+noteTag, withExtension: "wav")!
+        let noteUrl = Bundle.main.url(forResource: noteFileName, withExtension: "wav")!
         
         // Now, play the note on the iPhone
         
@@ -42,9 +41,7 @@ class ViewController: UIViewController{
         // The tag tells us which note to "play", so we append the tag number to "note" to select the proper wav
         // file
         
-        noteTag = String(sender.tag)
-        
-        playThatNote()
+        playThatNote(noteFileName: "note"+String(sender.tag))
         
     }
     
